@@ -25,7 +25,7 @@ contract Lottery {
 
     function selectWinner() public onlyManager {
         require(noOfParticipants >= 3, "At least 3 participants require");
-        uint256 randomNumber = block.timestamp % noOfParticipants;
+        uint256 randomNumber = block.timestamp % noOfParticipants; //should not use this to generate random number instead use oracles like chainlink;
         payable(participants[randomNumber]).transfer(address(this).balance);
         participants = new address payable[](0);
     }
